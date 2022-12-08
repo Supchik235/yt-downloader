@@ -77,7 +77,7 @@ def main():
                         with st.spinner("Downloading"):
                             url = YouTube(link)
                             video = url.streams.get_highest_resolution()
-                            path = str(os.path.join(str(pathlib.Path.home()), path1))
+                            path = os.path.join(str(pathlib.Path.home()), path1)
                             
                             
                             video.download(path)
@@ -87,7 +87,7 @@ def main():
                             
                             url = YouTube(link)
                             video = url.streams.get_lowest_resolution()
-                            path = str(os.path.join(str(pathlib.Path.home()), path1))
+                            path = os.path.join(str(pathlib.Path.home()), path1)
                             
                             video.download(path)
                             
@@ -96,7 +96,7 @@ def main():
                         with st.spinner("Downloading"):
                             url = YouTube(link)
                             video = url.streams.get_audio_only()
-                            path = str(os.path.join(str(pathlib.Path.home()), path1))
+                            path = os.path.join(str(pathlib.Path.home()), path1)
                             video.download(path)
                             
                         st.success("Done")
