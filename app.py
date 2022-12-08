@@ -56,7 +56,7 @@ def main():
         quality_options = ["Highest","Lowest"]
         res = st.selectbox("Resolution:", options=quality_options)
         typ = st.selectbox("Type of video",options=options)
-        path_selector = ["Downloads","Desktop","Documents"]
+        path_selector = ["Downloads/","Desktop/","Documents/"]
         path1 = st.selectbox("Path:", options=path_selector)
         Button = st.button("Download")
         
@@ -77,7 +77,7 @@ def main():
                         with st.spinner("Downloading"):
                             url = YouTube(link)
                             video = url.streams.get_highest_resolution()
-                            path = str(Path.home() / path1)
+                            path = str(os.path.join(str(pathlib.Path.home()), path1)))
                             
                             
                             video.download(path)
@@ -87,7 +87,7 @@ def main():
                             
                             url = YouTube(link)
                             video = url.streams.get_lowest_resolution()
-                            path = str(Path.home() / path1)
+                            path = str(os.path.join(str(pathlib.Path.home()), path1)))
                             
                             video.download(path)
                             
@@ -96,7 +96,7 @@ def main():
                         with st.spinner("Downloading"):
                             url = YouTube(link)
                             video = url.streams.get_audio_only()
-                            path = str(Path.home() / path1)
+                            path = str(os.path.join(str(pathlib.Path.home()), path1)))
                             video.download(path)
                             
                         st.success("Done")
