@@ -80,7 +80,8 @@ def main():
                             path = "."
                             
                             
-                            video.download(path)
+                            yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')[-1].download(path)
+
                         st.success("Done")
                     elif res == "Lowest":
                         with st.spinner("Downloading"):
@@ -89,7 +90,8 @@ def main():
                             video = url.streams.get_lowest_resolution()
                             path = "."
                             
-                            video.download(path)
+                            yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')[-1].download(path)
+
                             
                 elif typ == "Audio":
                     
@@ -97,7 +99,8 @@ def main():
                             url = YouTube(link)
                             video = url.streams.get_audio_only()
                             path = "."
-                            video.download(path)
+                            yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')[-1].download(SAVE_PATH)
+
                             
                         st.success("Done")
             
