@@ -77,30 +77,27 @@ def main():
                         with st.spinner("Downloading"):
                             url = YouTube(link)
                             video = url.streams.get_highest_resolution()
-                            path = "."
+                            path = str(Path.home() / path1)
                             
                             
-                            yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')[-1].download(path)
-
+                            video.download(path)
                         st.success("Done")
                     elif res == "Lowest":
                         with st.spinner("Downloading"):
                             
                             url = YouTube(link)
                             video = url.streams.get_lowest_resolution()
-                            path = "."
+                            path = str(Path.home() / path1)
                             
-                            yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')[-1].download(path)
-
+                            video.download(path)
                             
                 elif typ == "Audio":
                     
                         with st.spinner("Downloading"):
                             url = YouTube(link)
                             video = url.streams.get_audio_only()
-                            path = "."
-                            yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')[-1].download(SAVE_PATH)
-
+                            path = str(Path.home() / path1)
+                            video.download(path)
                             
                         st.success("Done")
             
