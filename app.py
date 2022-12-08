@@ -12,6 +12,32 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
+m = st.markdown("""
+<style>
+div.stButton > button:first-child {
+    background-color: none;
+    height: 50px;
+    width: 100%;
+    padding: 5px;
+    cursor: pointer;
+    transition: 1.2s;
+    
+}
+</style>""", unsafe_allow_html=True)
+l = st.markdown("""
+<style>
+div.stButton > button:hover{
+    
+    position: centered;
+    height: 55px;
+    width: 100%;
+    cursor: pointer;
+    transition: 1.2s;
+    
+}
+</style>""", unsafe_allow_html=True)
+
+
 def load_lottiefile(filepath: str):
     with open(filepath, "r") as f:
         return json.load(f)    
@@ -33,6 +59,7 @@ def main():
         path_selector = ["Downloads","Desktop","Documents"]
         path1 = st.selectbox("Path:", options=path_selector)
         Button = st.button("Download")
+        
         if Button:
             if len(link) == 0:
                 st.error("Blank Line")
@@ -52,13 +79,16 @@ def main():
                             video = url.streams.get_highest_resolution()
                             path = str(Path.home() / path1)
                             
+                            
                             video.download(path)
                         st.success("Done")
                     elif res == "Lowest":
                         with st.spinner("Downloading"):
+                            
                             url = YouTube(link)
                             video = url.streams.get_lowest_resolution()
                             path = str(Path.home() / path1)
+                            
                             video.download(path)
                             
                 elif typ == "Audio":
@@ -118,3 +148,5 @@ def main():
 
 if __name__ == '__main__':
 	main()
+ 
+ 
